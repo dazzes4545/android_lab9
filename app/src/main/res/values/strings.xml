@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Каталог игр</string>
+
+    <string name="game_title_1">Elden Ring</string>
+    <string name="game_title_2">The Witcher 3</string>
+    <string name="game_title_3">Hollow Knight</string>
+    <string name="game_title_4">Celeste</string>
+    <string name="game_title_5">Portal 2</string>
+
+    <string name="game_desc_1">Action/RPG с открытым миром: исследуйте Земли Между и сражайтесь с могущественными врагами.</string>
+    <string name="game_desc_2">Геральт из Ривии охотится на чудовищ в огромном фэнтезийном мире с нелинейным сюжетом.</string>
+    <string name="game_desc_3">Метроидвания: спуститесь в забытое королевство насекомых и раскройте его тайны.</string>
+    <string name="game_desc_4">Платформер о восхождении на гору: точные прыжки, история и внутренняя борьба героини.</string>
+    <string name="game_desc_5">Головоломки от первого лица: порталы, юмор GLaDOS и кооперативное прохождение.</string>
+</resources>
