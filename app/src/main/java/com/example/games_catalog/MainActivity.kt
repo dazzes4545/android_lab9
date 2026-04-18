@@ -18,6 +18,10 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
@@ -36,7 +40,7 @@ class MainActivity : AppCompatActivity() {
             // dynamicColor=false — реже проблемы на прошивках без полной поддержки dynamic color
             GamesCatalogTheme(dynamicColor = false) {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    GamesCatalogScreenStatic(
+                    GamesCatalogScreen(
                         modifier = Modifier.padding(innerPadding)
                     )
                 }
@@ -100,8 +104,11 @@ fun GameControlPanel(
 }
 
 @Composable
-fun GamesCatalogScreenStatic(modifier: Modifier = Modifier) {
-    val game = Datasource().loadGames().first()
+fun GamesCatalogScreen(modifier: Modifier = Modifier) {
+    val games = remember { Datasource().loadGames() }
+    var currentIndex by remember { mutableStateOf(0) }
+    val game = games[currentIndex]
+
     Column(
         modifier = modifier.fillMaxSize(),
         verticalArrangement = Arrangement.SpaceBetween
@@ -112,8 +119,12 @@ fun GamesCatalogScreenStatic(modifier: Modifier = Modifier) {
             GameDescriptionSection(game = game)
         }
         GameControlPanel(
-            onPrevious = { },
-            onNext = { }
+            onPrevious = {
+                currentIndex = if (currentIndex == 0) games.lastIndex else currentIndex - 1
+            },
+            onNext = {
+                currentIndex = if (currentIndex == games.lastIndex) 0 else currentIndex + 1
+            }
         )
     }
 }
